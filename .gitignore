@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.DS_Store
+
+# Pipeline outputs and large data (fetched via scripts/download_full_dataset.sh)
+/data/
+*.npy
+!small_test_dataset/*.npy
+*.checkpoint.npy
+*_checkpoint.npy
+pipeline_output/

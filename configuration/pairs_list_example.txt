@@ -1,0 +1,7 @@
+# One projection pair per line: pixel_index_x,pixel_index_y
+# Blank lines and lines without a comma are ignored by the pipeline scripts.
+57,41
+97,113
+152,153
+166,182
+200,185

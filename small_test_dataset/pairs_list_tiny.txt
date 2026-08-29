@@ -1,0 +1,3 @@
+# One projection pair per line: point_vector_index_x,point_vector_index_y
+0,1
+2,3

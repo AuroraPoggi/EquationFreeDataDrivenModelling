@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite both the paper and this repository."
+title: "Geometrycycles: geometric cycle detection and entropy/eigenvalue analysis for dynamical-system attractors"
+abstract: >
+  Code accompanying the paper "Equation free data-driven modelling of chaotic processes".
+  Detects geometric cycles in a sampled attractor, selects representative
+  cycles, and computes entropy plateau, cross-correlations, and eigenvalues
+  of the resulting transition structure.
+authors:
+  - family-names: "Poggi"
+    given-names: "Aurora"
+    # orcid: "https://orcid.org/TODO"
+
+version: 1.0.0
+date-released: "2026-08-28"
+license: MIT
+repository-code: "https://github.com/AuroraPoggi/EquationFreeDataDrivenModelling"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22159863"
+    description: "Code release DOI (Zenodo)"
+  - type: doi
+    value: "10.5281/zenodo.22159863"
+    description: "Full dataset DOI (Zenodo, ~20-30 GB)"
+preferred-citation:
+  type: article
+  title: "Equation free data-driven modelling of chaotic processes"
+  authors:
+    - family-names: "Poggi"
+      given-names: "Aurora"
+  journal: ""
+  year: 2026
+  doi: ""

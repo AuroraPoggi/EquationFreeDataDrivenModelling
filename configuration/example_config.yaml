@@ -1,0 +1,28 @@
+# Example configuration for one pipeline run.
+# Copy this file, edit the values, and pass it to scripts/run_pipeline_example.sh
+
+# --- run identity ---
+group: 0          # time-segment index (None if hours: 24)
+hours: 6          # 6, 12, or 24 for our dataset
+k_grid: 5         # pixel-block exponent used by newsaving_notunique_NOquant.py
+r_grids: 1000     # number of sampled pixel grids
+date_tag: "28aug2026"   
+
+# --- paths (relative to repo root; override with your own layout) ---
+input_movie: "data/1nM_24_hours_data.npy"   # raw movie, see scripts/download_full_dataset.sh
+output_dir: "pipeline_output/gr${group}_r${r_grids}_${date_tag}"
+pairs_file: "configuration/pairs_list_example.txt"
+
+# --- stage 2: plateau detection ---
+deltas: [0.10, 0.20, 0.25, 0.30, 0.35, 0.40, 0.50, 0.60, 0.70, 0.80, 1.00]
+
+# --- stage 3: correlations ---
+abs_max_delay: 100
+zero_tol: 1e-8
+zero_run: 100
+
+# --- stage 4: eigenvalues ---
+n_eigs: 3
+
+# --- all_cycles_good ---
+all_cycles_good: true
