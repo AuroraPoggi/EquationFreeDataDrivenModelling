@@ -1,4 +1,4 @@
-# Geometrycycles
+# Equation Free Data Driven Modelling
 
 Code accompanying the paper "Equation Free Data Driven Modelling of chaotic processes."
 
