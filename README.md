@@ -75,7 +75,7 @@ stages. Each step reads the previous step's output file.
 | Step 1 | [`code/savinglist_notunique_NOquant.py`](code/savinglist_notunique_NOquant.py) | Samples a point list from the raw movie: for each of `r_grids` random pixel grids, extracts a block of pixels and follows it forward in time. |
 | Step 2 | [`code/function_f_NOquant.py`](code/function_f_NOquant.py) | Builds the discrete return map `f` over the sampled points, using a KD-tree nearest-neighbor search to find each point's closest successor. |
 | Step 3 | [`code/getcycles_countpointsinbasin.py`](code/getcycles_countpointsinbasin.py) | Traces cycles in `f`, strips basin (non-periodic) parts, merges overlapping cycles, and writes the resulting unique cycles (`.npy` + `.csv`). 
-*** Note: set at the beginning of the scrip the variable: MOVIE_LENGTH = 358 ***|
+*** Note: set at the beginning of the scrip the variable: MOVIE_LENGTH = 4318 ***|
 | Stage 1 | [`code/pipeline_stage1_bestcycles.py`](code/pipeline_stage1_bestcycles.py) | For each projection pair in `--pairs_file`, marks every valid (period > 1) cycle as "good". |
 | Stage 2 | [`code/pipeline_stage2_plateaux_newnewnew.py`](code/pipeline_stage2_plateaux_newnewnew.py) | Computes per-cycle and joint entropies over a range of renormalization scales `k`, and detects the entropy plateau (`k*`). |
 | Stage 3 | [`code/pipeline_stage3_correlations.py`](code/pipeline_stage3_correlations.py) | Builds the transition matrix `P_k` at `k*` and computes cross-correlation functions over a range of time delays for each projection pair. |
