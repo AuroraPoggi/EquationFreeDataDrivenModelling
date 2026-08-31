@@ -7,7 +7,7 @@ and records the resulting point (one coordinate per timestep) plus
 its originating pixel and grid index. Output is a checkpointed dict:
 
 Usage:
-  python newsaving_notunique_NOquant.py \\
+  python saving_notunique_NOquant.py \\
       --input_data 1nM_24_hours_data.npy \\
       --group 0 --hours 6 --k 5 \\
       --output_file 24hmov_6hours_gr0_list_allpoints_k5_s6_r1000.npy
