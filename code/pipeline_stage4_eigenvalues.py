@@ -269,14 +269,6 @@ def main():
     first_singleton_index = singleton(U_k_all_dims)
     print(f"  First singleton index: {first_singleton_index}")
 
-    # ── option 2: compute eigenvalues once per k*, copy to all other pairs ────
-    # P_k depends only on cycles + U_k, NOT on coord_idx/coord_idy.
-    # So eigenvalues are identical for all self-pairs at the same k*.
-    # Strategy:
-    #   1. Collect all (M, k*) combinations needed across all pairs.
-    #   2. For each unique (M, k*): compute once using the first pair, save.
-    #   3. Copy the result JSON to all other pairs that share the same (M, k*).
-
     # Step 1: collect all (M, k*, cycle_ids) needed, grouped by (M, k*)
     # mk_to_pairs[(M, k*)] = list of (px, py) that need this combination
     mk_to_info  = {}   # (M, k*) -> {cycle_ids, periods}

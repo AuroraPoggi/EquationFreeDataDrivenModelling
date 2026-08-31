@@ -17,7 +17,6 @@ SEED = 0
 def main():
     rng = np.random.default_rng(SEED)
     # Values well below the hot-pixel threshold (7500)
-    # (used by function_f_NOquant.py)
     movie = rng.uniform(low=0, high=300, size=(TIMESTEPS, HEIGHT, WIDTH)).astype(np.float32)
     np.save(OUTPUT_FILE, movie)
     print(f"Wrote {OUTPUT_FILE}: shape={movie.shape}, dtype={movie.dtype}, "

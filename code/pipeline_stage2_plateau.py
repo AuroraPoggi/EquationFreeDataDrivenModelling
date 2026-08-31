@@ -538,83 +538,6 @@ def plot_entropy_all_aggregate(movie_sequence, periods_all,
     print(f"  [plot] entropy all cycles aggregate → {fname}")
 
 
-def plot_entropy_m_last_separate(entropies_per_cycle_all, cycle_sets,
-                                first_singleton_index,
-                                px, py, output_dir, group, hours, r_grids, tag=''):
-    """
-    One coloured line per cycle in the largest greedy set
-    """
-    if not cycle_sets:
-        print("  [plot] no cycle_sets — skipping M-separate plot.")
-        return
-
-    k_values = list(range(first_singleton_index + 1))
-    m_last   = cycle_sets[-1]   # largest set, e.g. [7, 33, 13] for M=3
-
-    plt.figure(figsize=(10, 8))
-    for cid in m_last:
-        ent_dict       = entropies_per_cycle_all[cid]
-        entropy_values = [ent_dict['U_k'][k]['entropy'] for k in k_values]
-        plt.plot(k_values, entropy_values, marker='o', label=f'Cycle {cid}', linewidth=1.0)
-    plt.xlabel('Scale k', fontsize=15)
-    plt.ylabel('Entropy', fontsize=15)
-    plt.legend(fontsize=10)
-    plt.ylim(-0.01, 2.5)
-    plt.xlim(-1, first_singleton_index + 1)
-    plt.tight_layout()
-    fname = os.path.join(output_dir,
-        f'entropy_M{len(m_last)}_separate_idx{px}_idy{py}_gr{group}_{hours}h_r{r_grids}_{tag}.pdf')
-    plt.savefig(fname, format='pdf')
-    plt.close()
-    print(f"  [plot] entropy M={len(m_last)} separate → {fname}")
-
-
-def plot_entropy_mx_aggregate(movie_sequence, periods_all,
-                              U_k_all_dims, cycle_sets,
-                              first_singleton_index,
-                              px, py, output_dir, group, hours, r_grids, tag=''):
-    """ 
-    One separate PDF per M: aggregate (joint) entropy of that cycle set
-    """
-    k_values = list(range(first_singleton_index + 1))
-
-    for cset in cycle_sets:
-        M           = len(cset)
-        periods_set = [periods_all[cid] for cid in cset]
-        cache_path  = os.path.join(
-            output_dir,
-            f'entropy_cache_joint_M{M}_cycles{cset[0]}to{cset[-1]}' +
-            f'_fsi{first_singleton_index}_gr{group}_{hours}h_r{r_grids}_{tag}.npy',
-        )
-        if os.path.exists(cache_path):
-            print(f"  [cache] joint entropy M={M} {cset} loaded from {cache_path}")
-            ent = np.load(cache_path, allow_pickle=True).item()
-        else:
-            ent = entropies_cycles(
-                movie_sequence, periods_set, U_k_all_dims,
-                cset, first_singleton_index,
-            )
-            np.save(cache_path, ent)
-            print(f"  [cache] joint entropy M={M} {cset} saved to {cache_path}")
-
-        entropy_values = [ent['U_k'][k]['entropy'] for k in k_values]
-
-        plt.figure(figsize=(10, 8))
-        plt.plot(k_values, entropy_values, marker='o', color='black', linewidth=1.0,
-                 label=f'M={M}: cycles {cset}')
-        plt.xlabel('Scale k', fontsize=15)
-        plt.ylabel('Entropy', fontsize=15)
-        y_max = max(entropy_values) if entropy_values else 2.5
-        plt.ylim(-0.01, max(2.5, y_max * 1.05))
-        plt.xlim(-1, first_singleton_index + 1)
-        plt.tight_layout()
-        fname = os.path.join(output_dir,
-            f'entropy_M{M}_aggregate_idx{px}_idy{py}_gr{group}_{hours}h_r{r_grids}_{tag}.pdf')
-        plt.savefig(fname, format='pdf')
-        plt.close()
-        print(f"  [plot] entropy M={M} aggregate → {fname}")
-
- 
 
 def plot_entropy_all_separate(entropies_per_cycle_all, first_singleton_index,
                               px, py, output_dir, group, hours, r_grids, tag=''):
@@ -761,14 +684,6 @@ def main():
             first_singleton_index, px0, py0,
             args.output_dir, args.group, args.hours, args.r_grids, tag=tag)
 
-        plot_entropy_m_last_separate(entropies_per_cycle_all, cycle_sets_0,
-            first_singleton_index, px0, py0,
-            args.output_dir, args.group, args.hours, args.r_grids, tag=tag)
-
-        plot_entropy_mx_aggregate(movie_sequence, periods_all, U_k_all_dims,
-            cycle_sets_0, first_singleton_index, px0, py0,
-            args.output_dir, args.group, args.hours, args.r_grids, tag=tag)
-
         # Plateau — once per cycle set
         print("\n--- Plateau computation (pair-independent) ---")
         plateau_cache = {}
@@ -863,19 +778,11 @@ def main():
             plot_ngamma_histogram(entropies_per_cycle_all, first_singleton_index,
                 px, py, args.output_dir, args.group, args.hours, args.r_grids, tag=tag)
 
-            plot_entropy_m_last_separate(entropies_per_cycle_all, cycle_sets,
-                first_singleton_index, px, py,
-                args.output_dir, args.group, args.hours, args.r_grids, tag=tag)
-
             plot_entropy_all_separate(entropies_per_cycle_all, first_singleton_index,
                 px, py, args.output_dir, args.group, args.hours, args.r_grids, tag=tag)
 
             plot_entropy_all_aggregate(movie_sequence, periods_all, U_k_all_dims,
                 first_singleton_index, px, py,
-                args.output_dir, args.group, args.hours, args.r_grids, tag=tag)
-
-            plot_entropy_mx_aggregate(movie_sequence, periods_all, U_k_all_dims,
-                cycle_sets, first_singleton_index, px, py,
                 args.output_dir, args.group, args.hours, args.r_grids, tag=tag)
 
             print(f"\n  --- Plateau computation ---")
