@@ -6,7 +6,7 @@ nearest neighbour (excluding itself) among all points
 below the halfway timestep threshold, via a KDTree.
 
 Usage:
-  python faster_function_f_NOquant.py \\
+  python function_f_NOquant.py \\
       --group 0 --hours 6 --k 5 \\
       --input_file 24hmov_6hours_gr0_list_allpoints_k5_s6_r1000.npy \\
       --output_file 24hmov_6hours_gr0_k5_function_f_allpoints_r1000.npy
