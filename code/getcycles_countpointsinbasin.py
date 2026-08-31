@@ -9,7 +9,7 @@ into each surviving cycle tracked and summed.
 
 
 Usage:
-  python main_getcycles_countpointsinbasin.py \\
+  python getcycles_countpointsinbasin.py \\
       --group 0 --k 5 \\
       --input_file 24hmov_6hours_gr0_k5_function_f_allpoints_r1000.npy \\
       --output_file 24hmov_6hours_gr0_unique_cycles_basinmovies_period_k5_s6_r1000.npy \\
