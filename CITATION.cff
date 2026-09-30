@@ -9,7 +9,7 @@ abstract: >
 authors:
   - family-names: "Poggi"
     given-names: "Aurora"
-    # orcid: "https://orcid.org/TODO"
+    orcid: "https://orcid.org/0000-0001-6442-4468"
 
 version: 1.0.0
 date-released: "2026-08-28"
