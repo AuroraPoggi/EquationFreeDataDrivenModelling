@@ -2,7 +2,8 @@
 
 Code of paper "Equation Free Data Driven Modelling of chaotic processes."
 
-We introduce a method for constructing predictive models of non cyclic physical processes directly from time-series data, without assuming an underlying differential equation. The observations define a discrete evolution rule whose recurrent behaviour captures the essential dynamics of the process. Analysing this behaviour across multiple geometric scales leads to probabilistic models in the form of Markov chains. Hyperbolicity criteria identify when these models provide a consistent statistical description of the data. The method is inspired by, and illustrated through, the analysis of a biological imaging data set referred to as the Cell Process.
+We introduce a method for constructing predictive models of non-cyclic physical processes directly from time-series data, without assuming an underlying differential equation. The observations define a discrete evolution rule whose recurrent behaviour captures the essential dynamics of the process. Analysing this behaviour across multiple geometric scales leads to probabilistic models in the form of Markov chains. Hyperbolicity criteria identify when these models provide a consistent statistical description of the data. The method is inspired by the analysis of a biological imaging data set referred to as the Cell Process in the paper.
+
 
 The full movie dataset used in the paper is **hosted on Zenodo**,
 not in this repository (see [Getting the full dataset](#getting-the-full-dataset)
